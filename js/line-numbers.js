@@ -15,10 +15,10 @@ const HTML_LINE_NUMBER = "<li class='js-line-number'>@:</li>",
 	};
 
 	var getHtmlLineNumber = function(number){
-		return "0400";
+		return "000"+number;
+		// o bug está na chamada da função ConverterBase.dec2hex(number, 4); sei lá porque
 		var result = HTML_LINE_NUMBER;
-		result.replace(REPLACE_NUMBER_CHAR, ConverterBase.dec2hex(number, 4));
-		return result;
+		return result.replace(REPLACE_NUMBER_CHAR, ConverterBase.dec2hex(number, 4));
 	};
 
 	var lastLineNumber = function(){

@@ -29,7 +29,8 @@
     vertical-align: top;
     padding: 0;
     font-size: 16px;
-    text-align: right; }
+    text-align: right;
+    list-style: none; }
   .conteudo h1 {
     margin: auto;
     text-align: center; }
