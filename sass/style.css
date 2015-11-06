@@ -23,14 +23,49 @@
   width: 50%; }
 
 .conteudo {
-  width: 80%;
+  max-width: 80%;
   margin: 0 auto; }
+  .conteudo ul {
+    vertical-align: top;
+    padding: 0;
+    font-size: 16px;
+    text-align: right; }
+  .conteudo h1 {
+    margin: auto;
+    text-align: center; }
+
+.form-codigo {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap; }
+
+.form-codigo > * {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  box-sizing: border-box;
+  border-size: 0; }
+
+.form-codigo > .line-numbers {
+  width: 5em; }
+
+.form-codigo > textarea {
+  width: 80%; }
+
+.form-codigo > button {
+  width: 15em; }
+
+.line-numbers > .line-number {
+  padding: 0;
+  margin: 0;
+  border: none; }
 
 #code {
-  display: block;
   background-color: black;
   color: #04ea04;
-  width: 100%;
-  resize: none; }
+  resize: none;
+  font-size: 16px; }
 
 /*# sourceMappingURL=style.css.map */

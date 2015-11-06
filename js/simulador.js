@@ -48,6 +48,5 @@ const BINARY_ARG_SIZE = 14,
 		displayP.textContent = ConvertBase.bin2hex(CES.P.toString());
 		displayT.textContent = CES.T.toString();
 
-	}	
-
-})()
+	}
+})();
