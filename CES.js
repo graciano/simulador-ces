@@ -1,9 +1,3 @@
-var ROM_TOTAL_POSITIONS = parseInt(ConvertBase.hex2dec("0400"));
-var BINARY_ARG_SIZE = 14;
-var BINARY_INST_SIZE = 2;
-var BINARY_SIZE = 16;	
-var HEX_SIZE = 4;
-
 var CES = {
 
 	P:0, //Registrador P
@@ -15,49 +9,44 @@ var CES = {
 	//TODO ler a ROM do ces no ~cp
 	memory : [],
 
-	//assumindo que P vem como hexadecimal
+	// line é hexadecimal
 	instruction : function(line){
 
 		var num = ConvertBase.hex2bin(line, BINARY_SIZE);
 
-		return parseInt(ConvertBase.bin2dec(num.substr(0,BINARY_INST_SIZE)));
+		return num.substr(0,BINARY_INST_SIZE);
 
 	},
 
-	//TODO fazer funcionar sem usar substring
+	// line é hexadecimal
 	argument : function(line){
 
 		var num = ConvertBase.hex2bin(line, BINARY_SIZE);
 
-		return num.substr(2,BINARY_ARG_SIZE);
+		return num.substr(BINARY_INST_SIZE,BINARY_ARG_SIZE);
 
 	},
 
 	step : function(){
 		
-		var line = this.memory[this.P]; // THIS IS STILL BINARY BUT JAVASCRIPT THINK IT IS INT
-		
-		console.log(line);
+		var line = this.memory[this.P];
 		
 		var inst = this.instruction(line);
 		var arg = this.argument(line);
-		
-		console.log(inst);
-		console.log(arg);
 
 		switch(inst){
 			
-			case 0:
+			case "00":
 				this.T = this.memory[arg];
 				this.P = Helper.binaryPlusPlus(this.P,BINARY_ARG_SIZE);
 				break;
 			
-			case 1:
+			case "01":
 				this.load(arg,this.T);
 				this.P = Helper.binaryPlusPlus(this.P,BINARY_ARG_SIZE);
 				break;
 			
-			case 2:
+			case "10":
 				if(this.T < this.memory[arg])
 					this.C = 1;
 				else
@@ -67,7 +56,7 @@ var CES = {
 				this.P = Helper.binaryPlusPlus(this.P, BINARY_ARG_SIZE);
 				break;
 			
-			case 3:
+			case "11":
 				if(!this.C){
 					this.P = arg;
 				}
@@ -76,13 +65,9 @@ var CES = {
 				}
 				break;
 			default:
-				console.log("you are fucked");
+				alert("DEU COCÔ, MEU QUERIDO");
 		}
 
-		console.log("P = "+this.P);
-		console.log("T = "+this.T);
-		console.log("C = "+this.C);
-		console.log(CES.memory);
 	},
 	//address = 14bits binary / value = 16bits hexadecimal
 	load:function(address,value){
