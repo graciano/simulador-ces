@@ -1,8 +1,8 @@
 const BINARY_ARG_SIZE = 14,
-	  BINARY_INST_SIZE = 2,
-	  BINARY_SIZE = 16,
-	  HEX_SIZE = 4,
-	  ROM_TOTAL_POSITIONS = 1024;// 0400 
+	    BINARY_INST_SIZE = 2,
+	    BINARY_SIZE = 16,
+	    HEX_SIZE = 4,
+	    ROM_TOTAL_POSITIONS = 1024;// 0400
 
 (function(){
 	var textareaCode = document.getElementById('code');
@@ -26,13 +26,13 @@ const BINARY_ARG_SIZE = 14,
 		loadROM();
 
 		CES.P = ConvertBase.dec2bin(ROM_TOTAL_POSITIONS,BINARY_ARG_SIZE);
-		
+
 		var lines = textareaCode.value.split("\n");
-		
+
 		for(var i=0; i<lines.length; i++){
 			CES.load(ConvertBase.dec2bin(ROM_TOTAL_POSITIONS + i, BINARY_ARG_SIZE), lines[i]);
 		}
-		
+
 		console.log(CES.memory);
 		display();
 	});
@@ -44,9 +44,10 @@ const BINARY_ARG_SIZE = 14,
 
 	var display = function(){
 
-		displayC.textContent = CES.C.toString();
-		displayP.textContent = ConvertBase.bin2hex(CES.P.toString());
-		displayT.textContent = CES.T.toString();
+		displayC.textContent = CES.C.toString().toUpperCase();
+		displayP.textContent = ConvertBase.bin2hex(CES.P.toString(),4).toUpperCase();
+		displayT.textContent = CES.T.toString().toUpperCase();
 
 	}
+
 })();
