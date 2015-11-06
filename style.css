@@ -1,0 +1,36 @@
+.conteudo {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap; }
+
+.conteudo > * {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  box-sizing: border-box;
+  border-size: 0; }
+
+.conteudo > *:nth-child(1) {
+  width: 100%; }
+
+.conteudo > *:nth-child(2) {
+  width: 50%; }
+
+.conteudo > *:nth-child(3) {
+  width: 50%; }
+
+.conteudo {
+  width: 80%;
+  margin: 0 auto; }
+
+#code {
+  display: block;
+  background-color: black;
+  color: #04ea04;
+  width: 100%;
+  resize: none; }
+
+/*# sourceMappingURL=style.css.map */
