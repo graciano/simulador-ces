@@ -1,0 +1,25 @@
+{
+  "name": "ces",
+  "homepage": "https://github.com/graciano/simulador-ces",
+  "authors": [
+    "Matheus Graciano <graciano.dev@gmail.com>",
+    "Lucas Gonzalez <lucasmgonzalez1992@gmail.com>"
+  ],
+  "description": "Simulação web do CES do professor Quilula.",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "compprog",
+    "ufrj",
+    "dcc"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
