@@ -2,8 +2,8 @@
 	var textareaCode = document.getElementById('code');
 	var btnPasso = document.getElementById('btn-passo');
 	var btnCarrega = document.getElementById('btn-carrega');
+	
 	var ROM_TOTAL_POSITIONS = parseInt(ConvertBase.hex2dec("0400"));
-	//var P_DID_NOT_STARTED = "xx";
 	var BINARY_ARG_SIZE = 14;
 	var BINARY_INST_SIZE = 2;
 	var BINARY_SIZE = 16;	
@@ -19,7 +19,7 @@
 	
 	};
 
-	var binMaisUm = function(bin,length){
+	var binaryPlusPlus = function(bin,length){
 		
 		var dec = ConvertBase.bin2dec(bin);
 		
@@ -29,7 +29,7 @@
 
 	};
 
-	var somaBin = function(a, b){
+	var binarySum = function(a, b){
 		
 		var aDec = ConvertBase.bin2dec(a);
 		var bDec = ConvertBase.bin2dec(a);
@@ -39,7 +39,7 @@
 		return ConvertBase.dec2bin(result);
 
 	}
-	var subBin = function(a, b, length){
+	var binarySub = function(a, b, length){
 
 		var aDec = ConvertBase.bin2dec(a);
 		var bDec = ConvertBase.bin2dec(a);
@@ -51,10 +51,10 @@
 	}
 
 	//TODO ler a ROM do ces no ~cp
-	var memoria = [];
+	var memory = [];
 
 	//assumindo que P vem como hexadecimal
-	var instrucao = function(line){
+	var instruction = function(line){
 
 		var num = ConvertBase.hex2bin(line, BINARY_SIZE);
 
@@ -63,7 +63,7 @@
 	};
 
 	//TODO fazer funcionar sem usar substring
-	var argumento = function(line){
+	var argument = function(line){
 
 		var num = ConvertBase.hex2bin(line, BINARY_SIZE);
 
@@ -83,14 +83,14 @@
 
 	};
 
-	var passo = function(){
+	var step = function(){
 		
-		var line = memoria[ces.P]; // THIS IS STILL BINARY BUT JAVASCRIPT THINK IT IS INT
+		var line = memory[ces.P]; // THIS IS STILL BINARY BUT JAVASCRIPT THINK IT IS INT
 		
 		console.log(line);
 		
-		var inst = instrucao(line);
-		var arg = argumento(line);
+		var inst = instruction(line);
+		var arg = argument(line);
 		
 		console.log(inst);
 		console.log(arg);
@@ -98,23 +98,23 @@
 		switch(inst){
 			
 			case 0:
-				ces.T = memoria[arg];
-				ces.P = binMaisUm(ces.P,BINARY_ARG_SIZE);
+				ces.T = memory[arg];
+				ces.P = binaryPlusPlus(ces.P,BINARY_ARG_SIZE);
 				break;
 			
 			case 1:
-				memoria[arg] = ces.T;
-				ces.P = binMaisUm(ces.P,BINARY_ARG_SIZE);
+				memory[arg] = ces.T;
+				ces.P = binaryPlusPlus(ces.P,BINARY_ARG_SIZE);
 				break;
 			
 			case 2:
-				if(ces.T < memoria[arg])
+				if(ces.T < memory[arg])
 					ces.C = 1;
 				else
 					ces.C = 0;
 
-				ces.T = hexSub(ces.T, memoria[arg], HEX_SIZE);
-				ces.P = binMaisUm(ces.P, BINARY_ARG_SIZE);
+				ces.T = hexSub(ces.T, memory[arg], HEX_SIZE);
+				ces.P = binaryPlusPlus(ces.P, BINARY_ARG_SIZE);
 				break;
 			
 			case 3:
@@ -122,7 +122,7 @@
 					ces.P = arg;
 				}
 				else{
-					ces.P = binMaisUm(ces.P,BINARY_ARG_SIZE);
+					ces.P = binaryPlusPlus(ces.P,BINARY_ARG_SIZE);
 				}
 				break;
 			default:
@@ -130,18 +130,18 @@
 		}
 
 		console.log(ces);
-		console.log(memoria);
+		console.log(memory);
 	};
 
-	var carregaROM = function(){
-		memoria[ConvertBase.dec2bin(0, BINARY_ARG_SIZE)] = "0000";
-		memoria[ConvertBase.dec2bin(1, BINARY_ARG_SIZE)] = "0001";
-		memoria[ConvertBase.dec2bin(2, BINARY_ARG_SIZE)] = "0002";
-		memoria[ConvertBase.dec2bin(3, BINARY_ARG_SIZE)] = "0003";
+	var loadROM = function(){
+		memory[ConvertBase.dec2bin(0, BINARY_ARG_SIZE)] = "0000";
+		memory[ConvertBase.dec2bin(1, BINARY_ARG_SIZE)] = "0001";
+		memory[ConvertBase.dec2bin(2, BINARY_ARG_SIZE)] = "0002";
+		memory[ConvertBase.dec2bin(3, BINARY_ARG_SIZE)] = "0003";
 	};
 
 	btnCarrega.addEventListener("click", function(ev){
-		carregaROM();
+		loadROM();
 
 		ces.P = ConvertBase.dec2bin(ROM_TOTAL_POSITIONS,BINARY_ARG_SIZE);
 		
@@ -151,13 +151,13 @@
 		
 		for(var i=0; i<lines.length; i++){
 			var line = lines[i];
-			memoria[ConvertBase.dec2bin(ROM_TOTAL_POSITIONS + i, BINARY_ARG_SIZE)] = line;
+			memory[ConvertBase.dec2bin(ROM_TOTAL_POSITIONS + i, BINARY_ARG_SIZE)] = line;
 		}
 		
-		console.log(memoria);
+		console.log(memory);
 	});
 	
 	btnPasso.addEventListener("click", function(ev){
-		passo();
+		step();
 	});
 })();
