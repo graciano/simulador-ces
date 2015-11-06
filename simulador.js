@@ -9,7 +9,7 @@
 	var BINARY_SIZE = 16;	
 	var HEX_SIZE = 4;
 	
-	var ces = {
+	var CES = {
 
 		P:"0001",
 	
@@ -85,7 +85,7 @@
 
 	var step = function(){
 		
-		var line = memory[ces.P]; // THIS IS STILL BINARY BUT JAVASCRIPT THINK IT IS INT
+		var line = memory[CES.P]; // THIS IS STILL BINARY BUT JAVASCRIPT THINK IT IS INT
 		
 		console.log(line);
 		
@@ -98,38 +98,38 @@
 		switch(inst){
 			
 			case 0:
-				ces.T = memory[arg];
-				ces.P = binaryPlusPlus(ces.P,BINARY_ARG_SIZE);
+				CES.T = memory[arg];
+				CES.P = binaryPlusPlus(CES.P,BINARY_ARG_SIZE);
 				break;
 			
 			case 1:
-				memory[arg] = ces.T;
-				ces.P = binaryPlusPlus(ces.P,BINARY_ARG_SIZE);
+				memory	[arg] = CES.T;
+				CES.P = binaryPlusPlus(CES.P,BINARY_ARG_SIZE);
 				break;
 			
 			case 2:
-				if(ces.T < memory[arg])
-					ces.C = 1;
+				if(CES.T < memory[arg])
+					CES.C = 1;
 				else
-					ces.C = 0;
+					CES.C = 0;
 
-				ces.T = hexSub(ces.T, memory[arg], HEX_SIZE);
-				ces.P = binaryPlusPlus(ces.P, BINARY_ARG_SIZE);
+				CES.T = hexSub(CES.T, memory[arg], HEX_SIZE);
+				CES.P = binaryPlusPlus(CES.P, BINARY_ARG_SIZE);
 				break;
 			
 			case 3:
-				if(!ces.C){
-					ces.P = arg;
+				if(!CES.C){
+					CES.P = arg;
 				}
 				else{
-					ces.P = binaryPlusPlus(ces.P,BINARY_ARG_SIZE);
+					CES.P = binaryPlusPlus(CES.P,BINARY_ARG_SIZE);
 				}
 				break;
 			default:
 				console.log("you are fucked");
 		}
 
-		console.log(ces);
+		console.log(CES);
 		console.log(memory);
 	};
 
@@ -143,7 +143,7 @@
 	btnCarrega.addEventListener("click", function(ev){
 		loadROM();
 
-		ces.P = ConvertBase.dec2bin(ROM_TOTAL_POSITIONS,BINARY_ARG_SIZE);
+		CES.P = ConvertBase.dec2bin(ROM_TOTAL_POSITIONS,BINARY_ARG_SIZE);
 		
 		code = textareaCode.value;
 
