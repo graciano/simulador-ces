@@ -1,8 +1,8 @@
-var ROM_TOTAL_POSITIONS = parseInt(ConvertBase.hex2dec("0400"));
-var BINARY_ARG_SIZE = 14;
-var BINARY_INST_SIZE = 2;
-var BINARY_SIZE = 16;	
-var HEX_SIZE = 4;
+const BINARY_ARG_SIZE = 14,
+	  BINARY_INST_SIZE = 2,
+	  BINARY_SIZE = 16,
+	  HEX_SIZE = 4,
+	  ROM_TOTAL_POSITIONS = 1024;// 0400 
 
 (function(){
 	var textareaCode = document.getElementById('code');
@@ -12,7 +12,7 @@ var HEX_SIZE = 4;
 	var displayP = document.getElementById('RP');
 	var displayT = document.getElementById('RT');
 	var displayC = document.getElementById('RC');
-	
+
 	var loadROM = function(){
 
 		CES.load(ConvertBase.dec2bin(0, BINARY_ARG_SIZE),"0000");
