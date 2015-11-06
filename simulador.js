@@ -2,6 +2,10 @@
 	var textareaCode = document.getElementById('code');
 	var btnPasso = document.getElementById('btn-passo');
 	var btnCarrega = document.getElementById('btn-carrega');
+
+	var displayP = document.getElementById('RP');
+	var displayT = document.getElementById('RT');
+	var displayC = document.getElementById('RC');
 	
 	var ROM_TOTAL_POSITIONS = parseInt(ConvertBase.hex2dec("0400"));
 	var BINARY_ARG_SIZE = 14;
@@ -131,6 +135,7 @@
 
 		console.log(CES);
 		console.log(memory);
+		display();
 	};
 
 	var loadROM = function(){
@@ -155,9 +160,18 @@
 		}
 		
 		console.log(memory);
+		display();
 	});
 	
 	btnPasso.addEventListener("click", function(ev){
 		step();
 	});
+
+	var display = function(){
+
+		displayC.textContent = CES.C.toString();
+		displayP.textContent = CES.P.toString();
+		displayT.textContent = CES.T.toString();
+
+	}
 })();

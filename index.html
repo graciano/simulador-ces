@@ -2,20 +2,55 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>CES Quilula- computador extremaamente simples</title>
+	<style type="text/css">
+		.col-6{
+			width:calc(50% - 50px);
+			float:left;
+			padding:25px;
+		}
+
+		#code{
+			display:block;
+			background-color:black;
+			color:rgba(4, 234, 4, 1);
+			width:100%;
+			resize:none;
+		}
+	</style>
 </head>
 <body>
 	<h1>Simulação do CES do professor Quilula</h1>
-	<form action="" method="GET">
-		<textarea id="code" rows="20" cols="70">0001
+	<div class="col-6">
+		<form action="" method="GET">
+			<textarea id="code" rows="20" cols="25">
+0001
 4500
 8002
 4501
 0002
 8000
-C400</textarea>
-		<button type="button" id="btn-carrega">Carrega Primeira Linha</button>
-		<button type="button" id="btn-passo">Passo</button>
-	</form>
+C400
+			</textarea>
+			<br>
+			<button type="button" id="btn-carrega">Carrega Primeira Linha</button>
+			<button type="button" id="btn-passo">Passo</button>
+		</form>		
+	</div>
+	<div class="col-6">
+		
+		<div>
+			P : <span id="RP"></span>
+		</div>
+
+		<div>
+			T : <span id="RT"></span>
+		</div>
+
+		<div>
+			C : <span id="RC"></span>
+		</div>
+	</div>
+
 	<script src="converter.js"></script>
 	<script src="simulador.js"></script>
 </body>
