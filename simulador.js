@@ -8,10 +8,12 @@ var displayC = document.getElementById('RC');
 
 
 var loadROM = function(){
-	CES.memory[ConvertBase.dec2bin(0, BINARY_ARG_SIZE)] = "0000";
-	CES.memory[ConvertBase.dec2bin(1, BINARY_ARG_SIZE)] = "0001";
-	CES.memory[ConvertBase.dec2bin(2, BINARY_ARG_SIZE)] = "0002";
-	CES.memory[ConvertBase.dec2bin(3, BINARY_ARG_SIZE)] = "0003";
+
+	CES.load(ConvertBase.dec2bin(0, BINARY_ARG_SIZE),"0000");
+	CES.load(ConvertBase.dec2bin(1, BINARY_ARG_SIZE),"0001");
+	CES.load(ConvertBase.dec2bin(2, BINARY_ARG_SIZE),"0002");
+	CES.load(ConvertBase.dec2bin(3, BINARY_ARG_SIZE),"0003");
+
 };
 
 btnCarrega.addEventListener("click", function(ev){
@@ -19,13 +21,10 @@ btnCarrega.addEventListener("click", function(ev){
 
 	CES.P = ConvertBase.dec2bin(ROM_TOTAL_POSITIONS,BINARY_ARG_SIZE);
 	
-	code = textareaCode.value;
-
-	var lines = code.split("\n");
+	var lines = textareaCode.value.split("\n");
 	
 	for(var i=0; i<lines.length; i++){
-		var line = lines[i];
-		CES.memory[ConvertBase.dec2bin(ROM_TOTAL_POSITIONS + i, BINARY_ARG_SIZE)] = line;
+		CES.load(ConvertBase.dec2bin(ROM_TOTAL_POSITIONS + i, BINARY_ARG_SIZE), lines[i]);
 	}
 	
 	console.log(CES.memory);

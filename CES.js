@@ -53,7 +53,7 @@ var CES = {
 				break;
 			
 			case 1:
-				this.memory	[arg] = this.T;
+				this.load(arg,this.T);
 				this.P = Helper.binaryPlusPlus(this.P,BINARY_ARG_SIZE);
 				break;
 			
@@ -83,6 +83,10 @@ var CES = {
 		console.log("T = "+this.T);
 		console.log("C = "+this.C);
 		console.log(CES.memory);
+	},
+	//address = 14bits binary / value = 16bits hexadecimal
+	load:function(address,value){
+		this.memory[address] = value;
 	}
 
 };
