@@ -15,10 +15,9 @@ const HTML_LINE_NUMBER = "<li class='js-line-number'>@:</li>",
 	};
 
 	var getHtmlLineNumber = function(number){
-		return "000"+number;
 		// o bug está na chamada da função ConverterBase.dec2hex(number, 4); sei lá porque
 		var result = HTML_LINE_NUMBER;
-		return result.replace(REPLACE_NUMBER_CHAR, ConverterBase.dec2hex(number, 4));
+		return result.replace(REPLACE_NUMBER_CHAR, ConvertBase.dec2hex(number+LINE_NUMBER_START)).toUpperCase();
 	};
 
 	var lastLineNumber = function(){
@@ -28,7 +27,6 @@ const HTML_LINE_NUMBER = "<li class='js-line-number'>@:</li>",
 
 	var atualizaLineNumber = function(){
 		var innerHTML = "";
-		console.log("oi");
 		console.log(getHtmlLineNumber(0));
 		for(var i=0; i<getLineCount(); i++){
 			innerHTML = innerHTML + "\n" + getHtmlLineNumber(i);
