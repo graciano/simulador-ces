@@ -40,4 +40,5 @@ const HTML_LINE_NUMBER = "<li class='js-line-number'>@:</li>",
 			atualizaLineNumber();
 		}
 	});
+	atualizaLineNumber();
 })();

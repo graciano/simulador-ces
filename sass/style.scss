@@ -2,12 +2,21 @@
 $font-size: 16px;
 @include row('.conteudo', (100%, 50%, 50%), false);
 
+*{
+	font-family: Arial;
+}
+@mixin reset(){
+	padding: 0;
+	margin: 0;
+	border: none;
+}
+
 .conteudo{
 	max-width: 80%;
 	margin: 0 auto;
 	ul{
 		vertical-align: top;
-		padding: 0;
+		@include reset();
 		font-size: $font-size;
 		text-align: right;
 		list-style: none;
@@ -19,15 +28,25 @@ $font-size: 16px;
 }
 
 @include row('.form-codigo', (
-	'.line-numbers' : 5em,
-	'textarea' : 80%,
+	'.scroll-code' : 100%,
 	'button' : 15em
 	), true);
 
+@include row('.scroll-code', (
+	'textarea': 80%,
+	'.line-numbers': 5em
+	), false);
+
+.scroll-code {
+	textarea, .line-numbers {
+		overflow: visible;
+		resize:none;
+	}
+
+}
+
 .line-numbers > .line-number {
-	padding: 0;
-	margin: 0;
-	border: none;
+	
 }
 
 #code{
@@ -35,4 +54,5 @@ $font-size: 16px;
 	color:rgba(4, 234, 4, 1);
 	resize:none;
 	font-size: $font-size;
+	@include reset();
 }

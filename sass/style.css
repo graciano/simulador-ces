@@ -22,12 +22,17 @@
 .conteudo > *:nth-child(3) {
   width: 50%; }
 
+* {
+  font-family: Arial; }
+
 .conteudo {
   max-width: 80%;
   margin: 0 auto; }
   .conteudo ul {
     vertical-align: top;
     padding: 0;
+    margin: 0;
+    border: none;
     font-size: 16px;
     text-align: right;
     list-style: none; }
@@ -49,24 +54,44 @@
   box-sizing: border-box;
   border-size: 0; }
 
-.form-codigo > .line-numbers {
-  width: 5em; }
-
-.form-codigo > textarea {
-  width: 80%; }
+.form-codigo > .scroll-code {
+  width: 100%; }
 
 .form-codigo > button {
   width: 15em; }
 
-.line-numbers > .line-number {
-  padding: 0;
+.scroll-code {
+  width: 100%;
   margin: 0;
-  border: none; }
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap; }
+
+.scroll-code > * {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  box-sizing: border-box;
+  border-size: 0; }
+
+.scroll-code > textarea {
+  width: 80%; }
+
+.scroll-code > .line-numbers {
+  width: 5em; }
+
+.scroll-code textarea, .scroll-code .line-numbers {
+  overflow: visible;
+  resize: none; }
 
 #code {
   background-color: black;
   color: #04ea04;
   resize: none;
-  font-size: 16px; }
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  border: none; }
 
 /*# sourceMappingURL=style.css.map */
